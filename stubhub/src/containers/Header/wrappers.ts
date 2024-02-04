@@ -11,8 +11,7 @@ export const HeaderWrapper = styled.div`
 export const LineWrapper = styled.img`
   position: relative;
   width: 100%;
-  height: 5px;
-
+  height: 0.325em;
   ::before {
     content: '';
     top: 0;
@@ -27,11 +26,12 @@ export const LineWrapper = styled.img`
 export const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 3em;
-  padding: 0.5em 0;
 `
 
 export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+`
+export const LogoWrapper = styled.img`
+  margin:0.3em 0 0.3em 0.3em;
 `
