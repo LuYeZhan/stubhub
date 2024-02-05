@@ -1,7 +1,7 @@
 import Button from "../../components/Button";
 import { ButtonsWrapper, HeaderWrapper, NavWrapper, LineWrapper, LogoWrapper } from "./wrappers";
 
-export const Header = () => {
+const Header = () => {
     
   return (
     <HeaderWrapper>
@@ -15,3 +15,5 @@ export const Header = () => {
     </HeaderWrapper>
   );
 }
+
+export default Header

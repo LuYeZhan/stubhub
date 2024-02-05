@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { LINKS } from "../../constants/footerLinks";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <FooterWrapper>
       <div>About us</div>
@@ -37,3 +37,5 @@ export const Footer = () => {
     </FooterWrapper>
   );
 };
+
+export default Footer
