@@ -1,7 +1,6 @@
 import Button from "../../components/Button";
 import { ButtonsWrapper, HeaderWrapper, NavWrapper, LineWrapper, LogoWrapper } from "./wrappers";
 
-
 export const Header = () => {
     
   return (
