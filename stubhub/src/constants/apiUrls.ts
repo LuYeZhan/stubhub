@@ -1,4 +1,4 @@
-export enum Urls {
+export enum URLS {
   CATEGORIES = 'categories',
   EVENTS = 'events',
   PURCHASES = 'purchases',
@@ -6,17 +6,17 @@ export enum Urls {
   USERS = 'users',
 }
 
-export enum DetailsUrls {
+export enum DETAILS_URLS {
   CATEGORIES = 'categories',
   USERS = 'users',
 }
 
-export enum IdUrls {
+export enum ID_URLS {
   EVENTS = 'events',
   PURCHASES = 'purchases',
 }
 
-export enum IdTypes {
+export enum ID_TYPES {
   USERID = 'userid',
   CATEOGORY_ID = 'categoryid',
 }
