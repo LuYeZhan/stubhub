@@ -1,8 +1,8 @@
-import { ButtonWrapper } from "./wrappers";
+import { CustomButtonProps, ButtonWrapper } from "./wrappers";
 
-
-const Button = ({ label }: { label: string }) => {
-  return <ButtonWrapper>{label}</ButtonWrapper>;
-}
+const Button: React.FC<CustomButtonProps> = ({ label, ...props }) => {
+  return <ButtonWrapper {...props}>{label}</ButtonWrapper>;
+};
 
 export default Button;
+

@@ -9,7 +9,7 @@ const Header = () => {
       <NavWrapper>
         <LogoWrapper src="/assets/logo/logo.svg" alt="Logo" /> 
         <ButtonsWrapper>
-          <Button label='Help'/> <Button label='Login'/>
+          <Button label='Help' hover={true} color='#000000'/> <Button label='Login' hover={true} color='#000000'/>
         </ButtonsWrapper>
       </NavWrapper>
     </HeaderWrapper>
