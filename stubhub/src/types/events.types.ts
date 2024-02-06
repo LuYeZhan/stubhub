@@ -1,4 +1,4 @@
-import eventsMock from '../mocks/eventsMock'
+import eventsMock from '../api/mocks/eventsMock'
 
 export type Event = {
   categoryId: number;

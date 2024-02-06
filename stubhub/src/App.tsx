@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/category" element={<Category />} />
+          <Route path="/category/:categoryId" element={<Category />} />
           <Route path="/event" element={<Event />} />
         </Routes>
         <Footer />

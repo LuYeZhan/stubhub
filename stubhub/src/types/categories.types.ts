@@ -1,4 +1,4 @@
-import categoriesMocks from '../mocks/categoriesMock'
+import categoriesMocks from '../api/mocks/categoriesMock'
 
 export type Category = {
   id: number;

@@ -1,4 +1,4 @@
-import usersMock  from "../mocks/usersMock";
+import usersMock  from "../api/mocks/usersMock";
 
 export type Address = {
   street: string;
