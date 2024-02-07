@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 export const ButtonWrapper = styled.button<ButtonProps>`
-  color: ${props => props.color || '#ffffff'}; // Set default color to white  
+  color: ${props => props.color || '#ffffff'};  
   padding: 0px 1em;
   display: flex;
   align-items: center;
@@ -33,9 +33,4 @@ export const ButtonWrapper = styled.button<ButtonProps>`
         background-color: #dddddd;
       }
     `}
-
-  /* Icon style */
-  .icon {
-    margin-right: 5px;
-  }
 `;
