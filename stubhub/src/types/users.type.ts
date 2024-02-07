@@ -1,4 +1,4 @@
-import usersMock  from "../api/mocks/usersMock";
+import usersMock  from "../mocks/usersMock";
 
 export type Address = {
   street: string;
@@ -17,7 +17,7 @@ export type Company = {
   bs: string;
 };
 
-export type User = {
+export type UserType = {
   id: number;
   name: string;
   username: string;
@@ -28,4 +28,4 @@ export type User = {
   company: Company;
 };
 
-export const users: User[][] = usersMock
+export const users: UserType[][] = usersMock

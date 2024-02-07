@@ -1,4 +1,4 @@
-import purchasesMock from '../api/mocks/purchasesMock'
+import purchasesMock from '../mocks/purchasesMock'
 
 export type Purchase = {
   buyerId: number;

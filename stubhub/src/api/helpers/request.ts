@@ -11,6 +11,10 @@ export const makeRequestDetails = ( url: DETAILS_URLS, id:number, idUrls:ID_URLS
   return axios.get(`${baseURL}/${url}/${id}/${idUrls}`);
 }
 
-export const makeRequestById = (url: URLS, idType:ID_TYPES, id:number, status:boolean) => {
-  return axios.get(`${baseURL}/${url}?${idType}=${id}&status=${status}`)
-}
+export const makeRequestById = (url: URLS, idType: ID_TYPES, id: number, status?: boolean) => {
+  let requestUrl = `${baseURL}/${url}?${idType}=${id}`;
+  if (status !== undefined) {
+    requestUrl += `&status=${status}`;
+  }  
+  return axios.get(requestUrl)
+};

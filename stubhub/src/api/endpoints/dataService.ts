@@ -20,7 +20,7 @@ export const getDataDetails = async ( url:DETAILS_URLS, id:number, idUrls:ID_URL
   }
 }
 
-export const getDataById = async ( url:URLS, idTypes:ID_TYPES, id:number, status:boolean) => {
+export const getDataById = async ( url:URLS, idTypes:ID_TYPES, id:number, status?:boolean) => {
   try {
     const response = await makeRequestById(url, idTypes, id, status);
     return response.data

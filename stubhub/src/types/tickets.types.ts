@@ -1,4 +1,4 @@
-import ticketsMock from "../api/mocks/ticketsMock";
+import ticketsMock from "../mocks/ticketsMock";
 
 export type Ticket = {
   sellerId?: number;
