@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ButtonColors } from "../../constants/colors";
 import { CategoryType } from "../../types/categories.types";
 import { useNavigate } from "react-router-dom";

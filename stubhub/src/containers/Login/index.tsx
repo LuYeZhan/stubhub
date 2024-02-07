@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getData } from "../../api/endpoints/dataService";
 import { URLS } from "../../constants/apiUrls";
 import { UserType } from "../../types/users.type"
@@ -14,7 +14,7 @@ const Login = () => {
       const userData = await getData(URLS.USERS);
       const flattenedUserData: UserType[] = userData.flat();      
       const userExists = flattenedUserData.some((user) => user.username === username);
-      
+
       if (userExists) {
         console.log('You are logged in!')
         setLoggedIn(true);
