@@ -7,10 +7,11 @@ import { Ticket } from "../../types/tickets.types";
 import { EventType } from "../../types/events.types";
 import { formatDate } from "../../helpers/dateFormat";
 import TicketActionItem from "../../components/TicketActionItem";
+import SearchInput from "../../components/SearchInput";
+import categoriesMocks from "../../mocks/categoriesMock";
 
 const Account = () => {
   const [user, setUser] = useState<UserType | null>(null);
-  const [userTickets, setUserTickets] = useState<Ticket[]>([]);
   const [userEvents, setUserEvents] = useState<EventType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const username = 'Nedra';
@@ -28,7 +29,6 @@ const Account = () => {
           console.log('You are logged in!');
           setUser(foundUser);
           const userTicketsData: Ticket[] = await getDataById(URLS.TICKETS, ID_TYPES.SELLER_ID, foundUser.id);
-          setUserTickets(userTicketsData);
           setUserEvents(eventsData.filter((event: EventType) => userTicketsData.some(ticket => ticket.eventId === event.id)));
           setLoading(false);
         } else {
@@ -44,8 +44,12 @@ const Account = () => {
     fetchData();
   }, []);
 
+  const categories = categoriesMocks
+
   return (
     <Wrapper>
+      <p>Hello {user?.name}</p>
+      <SearchInput categories={categories} />
       <Container>
         <h2>Tickets</h2>
         {loading ? (

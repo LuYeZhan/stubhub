@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TicketListItemColors } from '../../constants/colors';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ export const TicketsList = styled.ul`
 `;
 
 export const TicketListItem = styled.li`
-  border: 1px solid #f5f5f5;
+  border: 1px solid ${TicketListItemColors.border};
   display: block;
   padding: 5px;
   margin: 0 0 10px 0;

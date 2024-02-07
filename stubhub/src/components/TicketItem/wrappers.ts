@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { TicketActionColors } from "../../constants/colors";
 
 export const TicketRow = styled.tr`
-  border-bottom: 1px solid #DDD;
+  border-bottom: 1px solid ${TicketActionColors.border};
   &:last-child {
     border-bottom: none;
   }
   &:hover {
-    background-color: #FAFAFA;
+    background-color: ${TicketActionColors.hover};
   }
 `;
 

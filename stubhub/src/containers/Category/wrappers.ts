@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { EventTitleColors } from '../../constants/colors';
 
 export const EventImageWrapper = styled.div`
   position: relative;
@@ -14,7 +15,7 @@ export const EventTitleWrapper = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: ${EventTitleColors.black};
   color: white;
   padding: 0.5em;
   box-sizing: border-box;

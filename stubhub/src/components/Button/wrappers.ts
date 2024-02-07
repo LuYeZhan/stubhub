@@ -1,5 +1,6 @@
 import { MouseEventHandler } from 'react';
 import styled, { css } from 'styled-components';
+import { ButtonColors } from '../../constants/colors';
 
 export interface CustomButtonProps extends ButtonProps {
   label: string;
@@ -13,7 +14,7 @@ interface ButtonProps {
 }
 
 export const ButtonWrapper = styled.button<ButtonProps>`
-  color: ${props => props.color || '#ffffff'};  
+  color: ${props => props.color || ButtonColors.white};  
   padding: 0px 1em;
   display: flex;
   align-items: center;
@@ -30,7 +31,7 @@ export const ButtonWrapper = styled.button<ButtonProps>`
     props.hover &&
     css`
       &:hover {
-        background-color: #dddddd;
+        background-color: ${ButtonColors.grey};
       }
     `}
 `;

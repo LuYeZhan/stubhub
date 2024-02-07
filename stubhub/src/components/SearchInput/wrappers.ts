@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { InputColors } from '../../constants/colors';
 
 export const SearchWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ export const InputWrapper = styled.input`
   width: 90%;
   font-size: 1em;
   padding-left: 1em;
-  border: 1px solid #ccc;
+  border: 1px solid ${InputColors.border};
   border-radius: 1px;
 `;
 
@@ -20,7 +21,7 @@ export const TypeAheadWrapper = styled.div`
   max-height: 15em;
   overflow-y: auto;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid ${InputColors.border};
   border-top: none;
   border-radius: 0 0 4px 4px;
   &::-webkit-scrollbar {
@@ -28,7 +29,7 @@ export const TypeAheadWrapper = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: ${InputColors.background};
   }
 
   &::-webkit-scrollbar-thumb {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { EventCellColors } from "../../constants/colors";
 
 export const EventContainer = styled.div`
   margin-top: 20px;
@@ -18,5 +19,5 @@ export const EventRow = styled.tr``;
 
 export const EventCell = styled.td`
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid ${EventCellColors.border};
 `;

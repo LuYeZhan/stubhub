@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { HeaderColors } from '../../constants/colors';
 
 export const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: 1px solid rgb(221, 221, 221);
-  background-color: rgb(245, 245, 245);
+  border-bottom: 1px solid ${HeaderColors.border};
+  background-color: ${HeaderColors.background};
   flex-direction: column;
 `
 

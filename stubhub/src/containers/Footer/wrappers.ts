@@ -1,18 +1,19 @@
 import styled from 'styled-components';
+import { FooterColors } from '../../constants/colors';
 
 const commonLinkStyles = `
   & a {
     text-decoration: none;
-    color: #000;
+    color: ${FooterColors.black};
     transition: color 0.3s ease;
     &:hover {
-      color: #00a8ff;
+      color: ${FooterColors.blue};
     }
   }
 `;
 
 export const FooterWrapper = styled.div`
-  background-color: #f5f5f5;
+  background-color: ${FooterColors.background};
   font-size: 90%;
   line-height: 1.5em;
   list-style: none;
