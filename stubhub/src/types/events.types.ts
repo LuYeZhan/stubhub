@@ -1,6 +1,6 @@
 import eventsMock from '../api/mocks/eventsMock'
 
-export type Event = {
+export type EventType = {
   categoryId: number;
   id: number;
   title: string;
@@ -13,4 +13,4 @@ export type Event = {
   venueName: string;
 };
 
-export const events: Event[] = eventsMock
+export const events: EventType[] = eventsMock

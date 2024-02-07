@@ -7,8 +7,8 @@ export const makeRequest = (url:URLS) => {
   return axios.get(`${baseURL}/${url}`);
 };
 
-export const makeRequestDetails = (id:number, url: DETAILS_URLS) => {
-  return axios.get(`${baseURL}/${id}/${url}`);
+export const makeRequestDetails = ( url: DETAILS_URLS, id:number, idUrls:ID_URLS) => {
+  return axios.get(`${baseURL}/${url}/${id}/${idUrls}`);
 }
 
 export const makeRequestById = (url: ID_URLS, idType: ID_TYPES, id:number) => {

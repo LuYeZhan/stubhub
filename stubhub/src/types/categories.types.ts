@@ -1,9 +1,9 @@
 import categoriesMocks from '../api/mocks/categoriesMock'
 
-export type Category = {
+export type CategoryType = {
   id: number;
   name: string;
   description: string;
 };
 
-export const categories: Category[] = categoriesMocks
+export const categories: CategoryType[] = categoriesMocks

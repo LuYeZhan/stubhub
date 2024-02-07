@@ -11,10 +11,10 @@ export const getData = async (url:URLS) => {
   }
 };
 
-export const getDataDetails = async (id:number, url:DETAILS_URLS) => {
+export const getDataDetails = async ( url:DETAILS_URLS, id:number, idUrls:ID_URLS) => {
   try {
-    const response = await makeRequestDetails(id, url);
-    return response
+    const response = await makeRequestDetails(url, id, idUrls);
+    return response.data
   } catch (error) {
     console.error(`Error fetching `, error)
   }
