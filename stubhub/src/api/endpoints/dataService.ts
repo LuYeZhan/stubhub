@@ -20,10 +20,10 @@ export const getDataDetails = async ( url:DETAILS_URLS, id:number, idUrls:ID_URL
   }
 }
 
-export const getDataById = async ( url:ID_URLS, idType:ID_TYPES, id:number, ) => {
+export const getDataById = async ( url:URLS, idTypes:ID_TYPES, id:number, status:boolean) => {
   try {
-    const response = await makeRequestById(url, idType, id);
-    return response
+    const response = await makeRequestById(url, idTypes, id, status);
+    return response.data
   } catch (error) {
     console.error(`Error fetching `, error)
   }

@@ -1,7 +1,9 @@
+import { MouseEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
 export interface CustomButtonProps extends ButtonProps {
   label: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 interface ButtonProps {

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { getData, getDataDetails } from "../../api/endpoints/dataService";
 import { DETAILS_URLS, ID_URLS, URLS } from "../../constants/apiUrls";
 import { EventType } from "../../types/events.types";
@@ -8,11 +7,14 @@ import { EventContainer, EventImageWrapper, EventItem, EventTitleWrapper, EventW
 import { formatDate } from "../../helpers/dateFormat";
 import SearchInput from "../../components/SearchInput";
 import { CategoryType } from "../../types/categories.types";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Category = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const [events, setEvents] = useState<EventType[]>([]); 
   const [categories, setCategories] = useState<CategoryType[]>([]);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,8 +48,9 @@ const Category = () => {
     }
   }, [categoryId]);
 
-  if (events.length === 0) {
-    return <p>Loading...</p>;
+  const onClick = (id: number, eventName: string) => {
+    const encodedEventName = encodeURIComponent(eventName.replace(/\s+/g, "-"));
+    navigate(`/event/${encodedEventName}/${id}`);
   }
 
   return (
@@ -65,7 +68,7 @@ const Category = () => {
               <p>{item.city}</p>
               <p>{formatDate(item.date)}</p>
             </EventItem>
-            <Button label="buy" color="white" bgColor="green" />
+            <Button label="buy" color="white" bgColor="green" onClick={() => onClick(item.id, item.title)}/>
           </EventWrapper>
         ))}
       </EventContainer>
