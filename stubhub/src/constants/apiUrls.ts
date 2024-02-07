@@ -19,5 +19,6 @@ export enum ID_URLS {
 export enum ID_TYPES {
   USERID = 'userid',
   CATEOGORY_ID = 'categoryid',
-  EVENT_ID= 'eventId'
+  EVENT_ID = 'eventId',
+  SELLER_ID = 'sellerId'
 }

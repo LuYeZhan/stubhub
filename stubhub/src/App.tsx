@@ -5,6 +5,7 @@ import Home from "./containers/Home";
 import Account from "./containers/Account";
 import Category from "./containers/Category";
 import Event from "./containers/Event";
+import Login from "./containers/Login";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/me" element={<Account />} />
           <Route path="/category/:categoryId" element={<Category />} />
           <Route path="/event/:eventName/:eventId" element={<Event />} />
         </Routes>
