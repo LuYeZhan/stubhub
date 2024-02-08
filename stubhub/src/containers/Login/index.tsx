@@ -1,23 +1,27 @@
-import { useState } from "react";
-import { getData } from "../../api/endpoints/dataService";
-import { URLS } from "../../constants/apiUrls";
+import { useContext, useState } from "react";
 import { UserType } from "../../types/users.type"
+import { DataContext } from "../../context/DataContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { setIsUserLoggedIn, setUser, users } = useContext(DataContext);
+  const navigate = useNavigate()
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const userData = await getData(URLS.USERS);
-      const flattenedUserData: UserType[] = userData.flat();      
-      const userExists = flattenedUserData.some((user) => user.username === username);
-
-      if (userExists) {
-        console.log('You are logged in!')
-        setLoggedIn(true);
+      const flattenedUserData: UserType[] = users.flat();      
+      const foundUser = flattenedUserData.find((user) => user.username === username);
+      if (!username) {
+        setError("Please enter a username value.");
+        return;
+      }
+      if (foundUser) {
+        setIsUserLoggedIn(true);
+        setUser(foundUser)
+        navigate('/me')
       } else {
         setError("This username doesn't exist.");
       }
@@ -26,10 +30,6 @@ const Login = () => {
       setError("An error occurred while fetching user data.");
     }
   };
-
-  if (loggedIn) {
-    return <p>You are logged in!</p>;
-  }
 
   return (
     <div>

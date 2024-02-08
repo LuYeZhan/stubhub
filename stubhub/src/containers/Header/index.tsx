@@ -1,14 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
-import { ButtonsWrapper, HeaderWrapper, NavWrapper, LineWrapper, LogoWrapper } from "./wrappers";
+import { useContext } from "react";
+import { DataContext } from "../../context/DataContext";
+import {
+  ButtonsWrapper,
+  HeaderWrapper,
+  NavWrapper,
+  LineWrapper,
+  LogoWrapper
+} from "./wrappers";
 
 const Header = () => {
+  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(DataContext);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-   
-  const onClick = () => {
-    navigate('/login')
-  }
+  const handleLoginClick = () => {
+    if (isUserLoggedIn) {
+      setIsUserLoggedIn(false)
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const renderLoginButtonLabel = () => {
+    return isUserLoggedIn ? 'Logout' : 'Login';
+  };
 
   return (
     <HeaderWrapper>
@@ -16,11 +33,17 @@ const Header = () => {
       <NavWrapper>
         <LogoWrapper src="/assets/logo/logo.svg" alt="Logo" /> 
         <ButtonsWrapper>
-          <Button label='Help' hover={true} color='#000000'/> <Button label='Login' hover={true} color='#000000' onClick={onClick}/>
+          <Button label='Help' hover={true} color='#000000'/>
+          <Button
+            label={renderLoginButtonLabel()}
+            hover={true}
+            color='#000000'
+            onClick={handleLoginClick}
+          />
         </ButtonsWrapper>
       </NavWrapper>
     </HeaderWrapper>
   );
 }
 
-export default Header
+export default Header;

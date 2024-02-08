@@ -8,20 +8,22 @@ import { CategoryType } from '../types/categories.types';
 
 export const DataContext = createContext<DataContextType>(initialData);
 
-const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<UserType[][]>([]);
+export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
+  const [users, setUsers] = useState<UserType[][]>([]);
   const [events, setEvents] = useState<EventType[]>([]);
   const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<UserType | null>(null);
 
   useEffect(() => {
     const fetchAllData = async () => {
       try {
-        const [userData, eventData, categoryData] = await Promise.all([
+        const [usersData, eventData, categoryData] = await Promise.all([
           getData(URLS.USERS),
           getData(URLS.EVENTS),
           getData(URLS.CATEGORIES),
         ]);
-        setUser(userData);
+        setUsers(usersData);
         setEvents(eventData);
         setCategories(categoryData);
       } catch (error) {
@@ -32,11 +34,20 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     fetchAllData();
   }, []);
 
+
+  const contextValue: DataContextType = {
+    users,
+    categories,
+    events,
+    user,
+    setUser,
+    isUserLoggedIn, 
+    setIsUserLoggedIn, 
+  };
+
   return (
-    <DataContext.Provider value={{ user, events, categories }}>
+    <DataContext.Provider value={contextValue}>
       {children}
     </DataContext.Provider>
   );
 };
-
-export default DataProvider;

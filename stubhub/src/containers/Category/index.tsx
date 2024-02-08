@@ -1,32 +1,21 @@
-import { useEffect, useState } from "react";
-import { getData, getDataDetails } from "../../api/endpoints/dataService";
-import { DETAILS_URLS, ID_URLS, URLS } from "../../constants/apiUrls";
+import { useContext, useEffect, useState } from "react";
+import { getDataDetails } from "../../api/endpoints/dataService";
+import { DETAILS_URLS, ID_URLS } from "../../constants/apiUrls";
 import { EventType } from "../../types/events.types";
 import Button from "../../components/Button";
 import { EventContainer, EventImageWrapper, EventItem, EventTitleWrapper, EventWrapper } from "./wrappers";
 import { formatDate } from "../../helpers/dateFormat";
 import SearchInput from "../../components/SearchInput";
-import { CategoryType } from "../../types/categories.types";
 import { useParams, useNavigate } from "react-router-dom";
+import { DataContext } from "../../context/DataContext";
 
 const Category = () => {
+
   const { categoryId } = useParams<{ categoryId: string }>();
-  const [events, setEvents] = useState<EventType[]>([]); 
-  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [ events, setEvents ] = useState<EventType[]>([]);
+  const { categories } = useContext(DataContext);
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getData(URLS.CATEGORIES);
-        setCategories(response);
-      } catch (error) {
-        console.error("Error fetching data", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (categoryId) {

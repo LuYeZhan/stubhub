@@ -1,38 +1,25 @@
-import { useEffect, useState } from "react";
-import { getData, getDataById } from "../../api/endpoints/dataService";
+import { useContext, useEffect, useState } from "react";
+import { getDataById } from "../../api/endpoints/dataService";
 import { Container, DateTime, EventImage, EventInfo, EventTitle, Locations, TicketActions, TicketEvent, TicketListItem, TicketsList, Wrapper } from "./wrappers";
 import { ID_TYPES, URLS } from "../../constants/apiUrls";
-import { UserType } from "../../types/users.type";
 import { Ticket } from "../../types/tickets.types";
 import { EventType } from "../../types/events.types";
 import { formatDate } from "../../helpers/dateFormat";
 import TicketActionItem from "../../components/TicketActionItem";
 import SearchInput from "../../components/SearchInput";
-import categoriesMocks from "../../mocks/categoriesMock";
+import { DataContext } from "../../context/DataContext";
 
 const Account = () => {
-  const [user, setUser] = useState<UserType | null>(null);
   const [userEvents, setUserEvents] = useState<EventType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const username = 'Nedra';
+  const { categories, user, events } = useContext(DataContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [eventsData, usersData] = await Promise.all([
-          getData(URLS.EVENTS),
-          getData(URLS.USERS)
-        ]);
-        const flattenedUserData: UserType[] = usersData.flat();
-        const foundUser = flattenedUserData.find((user) => user.username === username);
-        if (foundUser) {
-          console.log('You are logged in!');
-          setUser(foundUser);
-          const userTicketsData: Ticket[] = await getDataById(URLS.TICKETS, ID_TYPES.SELLER_ID, foundUser.id);
-          setUserEvents(eventsData.filter((event: EventType) => userTicketsData.some(ticket => ticket.eventId === event.id)));
-          setLoading(false);
-        } else {
-          console.error("This username doesn't exist.");
+        if (user) { 
+          const userTicketsData: Ticket[] = await getDataById(URLS.TICKETS, ID_TYPES.SELLER_ID, user.id);
+          setUserEvents(events.filter((event: EventType) => userTicketsData.some(ticket => ticket.eventId === event.id)));
           setLoading(false);
         }
       } catch (error) {
@@ -42,9 +29,8 @@ const Account = () => {
     };
 
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const categories = categoriesMocks
 
   return (
     <Wrapper>

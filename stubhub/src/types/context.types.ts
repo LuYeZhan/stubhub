@@ -4,9 +4,13 @@ import { EventType } from "./events.types";
 import { UserType } from "./users.type";
 
 export interface DataContextType {
-  user: UserType[][] ;
+  users: UserType[][] ;
   categories: CategoryType[];
   events: EventType[];
+  isUserLoggedIn: boolean;
+  setIsUserLoggedIn: (value: boolean) => void;
+  user: UserType | null;
+  setUser: (value: UserType) => void; 
 }
 
 export interface DataProviderProps {
@@ -14,7 +18,11 @@ export interface DataProviderProps {
 }
 
 export const initialData: DataContextType = {
-  user: [],
+  users: [],
   categories: [],
   events: [],
+  isUserLoggedIn: false,
+  setIsUserLoggedIn: () => {},
+  user: null,
+  setUser: () => {}
 };
