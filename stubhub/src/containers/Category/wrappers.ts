@@ -1,17 +1,21 @@
 import styled from 'styled-components';
-import { EventTitleColors } from '../../constants/colors';
+import { ButtonColors, EventTitleColors } from '../../constants/colors';
+import { Desktop } from '../../constants/devices';
+import { Paddings } from '../../constants/paddings';
 
 export const EventImageWrapper = styled.div`
   position: relative;
   display: inline-block;
   & img {
-    width: 22em;
-    height: 15em;
+    width: 93vw;
+    height: 25vh;
     display: block;
     border-radius: 3px;
+    @media ${Desktop}{
+      width: 24em;
+      height: 15em;
+    }
   }
-
-
 
 `
 
@@ -45,9 +49,24 @@ export const EventWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  & button {
+    width: 100%;
+    padding: 1em;
+    &:hover {
+      background-color: ${ButtonColors.darkgreen};
+    }
+  }
+  @media ${Desktop}{
+    justify-content: flex-end;
+    & button {
+      width: auto;
+    }
+  }
 `
 
 export const CategoryWrapper = styled.div`
-  padding: 1em 3em;
+  padding: 1em;
+  @media ${Desktop}{
+    padding: ${Paddings.desktop}
+  }
 `

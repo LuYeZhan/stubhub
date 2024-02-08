@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import { EventCellColors, UnderlineColors } from "../../constants/colors";
+import { Desktop } from "../../constants/devices";
+import { Paddings } from "../../constants/paddings";
 
 export const EventContainer = styled.div`
-  padding: 1em 3em;
+  padding: 1em;
+  @media ${Desktop}{
+    padding: ${Paddings.desktop}
+  }
 `;
 
 export const EventTable = styled.table`

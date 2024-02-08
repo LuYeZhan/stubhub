@@ -3,7 +3,8 @@ export const ButtonColors = {
   white: '#ffffff',
   grey: '#dddddd',
   black: '#000000',
-  green: '#80C500'
+  green: '#80C500',
+  darkgreen: 'darkgreen'
 }
 
 export const InputColors = {

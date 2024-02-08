@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import { TicketListColors } from '../../constants/colors';
 import { Desktop } from '../../constants/devices';
+import { Paddings } from '../../constants/paddings';
 
 export const Wrapper = styled.div`
-  padding: 1em 3em;
+  padding: 1em;
+  @media ${Desktop}{
+    padding: ${Paddings.desktop}
+  }
 `;
 
 export const Container = styled.div`
