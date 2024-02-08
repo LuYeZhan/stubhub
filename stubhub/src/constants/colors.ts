@@ -1,7 +1,9 @@
 export const ButtonColors = {
   blue: '#0F82F5',
   white: '#ffffff',
-  grey: '#dddddd'
+  grey: '#dddddd',
+  black: '#000000',
+  green: '#80C500'
 }
 
 export const InputColors = {
@@ -42,4 +44,8 @@ export const FooterColors = {
 export const HeaderColors = {
   border: 'rgb(221, 221, 221)',
   background: 'rgb(245, 245, 245)'
+}
+
+export const LetterColors = {
+  primary: '#888'
 }

@@ -15,7 +15,7 @@ interface ButtonProps {
 
 export const ButtonWrapper = styled.button<ButtonProps>`
   color: ${props => props.color || ButtonColors.white};  
-  padding: 0px 1em;
+  padding: 0.5em 1em;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -25,6 +25,7 @@ export const ButtonWrapper = styled.button<ButtonProps>`
   border: 0;
   height: -webkit-fill-available;
   transition: background-color 0.2s ease-out;
+  border-radius: 3px;
 
   /* Apply hover effect only if hover prop is true */
   ${props =>
