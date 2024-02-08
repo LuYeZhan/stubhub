@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { EventTitleColors } from '../../constants/colors';
-import { Desktop, LargeDesktop } from '../../constants/devices';
 
 export const EventImageWrapper = styled.div`
   position: relative;

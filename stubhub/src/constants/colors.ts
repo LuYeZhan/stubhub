@@ -47,5 +47,10 @@ export const HeaderColors = {
 }
 
 export const LetterColors = {
-  primary: '#888'
+  primary: '#888',
+  secondary: FooterColors.black
+}
+
+export const UnderlineColors = {
+  primary: '#ccc'
 }

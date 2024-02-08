@@ -2,6 +2,10 @@ import { useContext, useState } from "react";
 import { UserType } from "../../types/users.type"
 import { DataContext } from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
+import { Form, Input, Label, LoginContainer } from "./wrappers";
+import Button from "../../components/Button";
+import { ButtonColors } from "../../constants/colors";
+import Dialog from "../../components/Dialog";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,7 +13,7 @@ const Login = () => {
   const { setIsUserLoggedIn, setUser, users } = useContext(DataContext);
   const navigate = useNavigate()
 
-  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
       const flattenedUserData: UserType[] = users.flat();      
@@ -23,30 +27,31 @@ const Login = () => {
         setUser(foundUser)
         navigate('/me')
       } else {
-        setError("This username doesn't exist.");
+        setError(`doesn't exist.`);
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
-      setError("An error occurred while fetching user data.");
     }
   };
 
+  const handleCloseDialog = () => {
+    setError(""); 
+  };
+
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <LoginContainer>
+      <Form >
+        <h2>Login</h2>
+        <Label>Username:</Label>
+        <Input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <Button bgColor={ButtonColors.grey} color={ButtonColors.black} onClick={handleLogin} label='login' />
+      </Form>
+      {error && <Dialog isOpen={true} onClose={handleCloseDialog} username={username} errorMessage={error} />}    
+      </LoginContainer>
   );
 };
 
