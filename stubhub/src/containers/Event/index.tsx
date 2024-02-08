@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getDataById } from "../../api/endpoints/dataService";
 import { ID_TYPES, URLS } from "../../constants/apiUrls";
-import { EventContainer, TicketList } from "./wrappers";
+import { CustomTr, EventContainer, TableWrapper, TicketList } from "./wrappers";
 import TicketItem from "../../components/TicketItem";
 import { Ticket } from "../../types/tickets.types";
+import Button from "../../components/Button";
+import { ButtonColors, LetterColors } from "../../constants/colors";
 
 const Event = () => {
   const { eventId, eventName } = useParams<{ eventId: string; eventName: string }>();
+  const navigate = useNavigate(); 
 
   const [eventData, setEventData] = useState<any[]>([]);
   useEffect(() => {
@@ -28,6 +31,10 @@ const Event = () => {
     fetchEventData();
   }, [eventId]);
 
+  const handleGoBack = () => {
+    navigate(-1); // Navigate back to the previous page
+  };
+
   const formattedEventName = eventName ? eventName.replace(/-/g, " ") : "Default Event Name";
   return (
     <EventContainer>
@@ -36,14 +43,14 @@ const Event = () => {
         <p>No tickets left for this event.</p>
       ) : (
         <TicketList>
-          <table>
+          <TableWrapper>
             <thead>
-              <tr>
+              <CustomTr>
                 <th>Localidad</th>
                 <th>Disponibles</th>
                 <th>Precio por entrada</th>
                 <th></th>
-              </tr>
+              </CustomTr>
             </thead>
             <tbody>
               {eventData.map((ticket: Ticket, index: number) => (
@@ -54,9 +61,10 @@ const Event = () => {
                 />
               ))}
             </tbody>
-          </table>
+          </TableWrapper>
         </TicketList>
       )}
+      <Button onClick={handleGoBack} color={LetterColors.secondary} label='Go back' bgColor={ButtonColors.grey}/>
     </EventContainer>
   );
 };
