@@ -13,14 +13,16 @@ interface SearchInputProps {
 const SearchInput: React.FC<SearchInputProps> = ({ categories }) => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredCategories, setFilteredCategories] = useState<CategoryType[]>([]);
+  const [error, setError] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setFilteredCategories(
-      categories.filter((category: CategoryType) =>
-        category.name.toLowerCase().includes(searchInput.toLowerCase())
-      )
+    const filtered = categories.filter((category: CategoryType) =>
+      category.name.toLowerCase().includes(searchInput.toLowerCase())
     );
+    setFilteredCategories(filtered);
+
+    setError(filtered.length === 0 && searchInput.trim() !== "");
   }, [categories, searchInput]);
 
   const handleCategoryClick = (id: number) => {
@@ -37,7 +39,14 @@ const SearchInput: React.FC<SearchInputProps> = ({ categories }) => {
         />
         <Button bgColor={ButtonColors.blue} label="Search" />
       </SearchWrapper>
-      {searchInput && (
+      {error && (
+        <TypeAheadWrapper>
+          <FilteredWrapper>
+            <h3>No category found with this name. Please try another name.</h3>
+          </FilteredWrapper>
+        </TypeAheadWrapper>
+      )}
+      {!error && searchInput && (
         <TypeAheadWrapper>
           {filteredCategories.map((item: CategoryType) => (
             <FilteredWrapper key={item.id} onClick={() => handleCategoryClick(item.id)}>

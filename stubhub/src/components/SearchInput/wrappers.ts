@@ -10,11 +10,11 @@ export const SearchWrapper = styled.div`
   }
 `
 export const InputWrapper = styled.input`
-  width: 90%;
+  width: 100%;
   font-size: 1em;
   padding-left: 1em;
   border: 1px solid ${InputColors.border};
-  border-radius: 1px;
+  border-radius: 3px;
 `;
 
 export const TypeAheadWrapper = styled.div`
