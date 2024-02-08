@@ -1,16 +1,14 @@
 import styled from 'styled-components';
-import { TicketListItemColors } from '../../constants/colors';
+import { TicketListColors } from '../../constants/colors';
 
 export const Wrapper = styled.div`
-  width: 100%;
+  padding: 1em 3em;
 `;
 
 export const Container = styled.div`
-  width: 95%;
   margin: 0 auto;
   padding-left: 0;
   padding-right: 0;
-  max-width: 1170px;
 `;
 
 export const TicketsList = styled.ul`
@@ -19,11 +17,18 @@ export const TicketsList = styled.ul`
   padding: 0;
 `;
 
-export const TicketListItem = styled.li`
-  border: 1px solid ${TicketListItemColors.border};
+interface TicketListItemProps {
+  status?: boolean;
+}
+
+export const TicketListItem = styled.li<TicketListItemProps>`
+  border: 1px solid ${TicketListColors.border};
   display: block;
   padding: 5px;
   margin: 0 0 10px 0;
+  ${({ status }) => status && `
+    background-color: ${TicketListColors.primary}
+  `}
 `;
 
 export const TicketEvent = styled.div`
@@ -34,7 +39,8 @@ export const TicketEvent = styled.div`
 
 export const EventImage = styled.img`
   display: table-cell;
-  width: 100px;
+  width: 150px;
+  height: 100px;
   margin: 0;
 `;
 

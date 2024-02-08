@@ -13,4 +13,6 @@ export type EventType = {
   venueName: string;
 };
 
+export type TempEventType = EventType & { status: boolean | undefined };
+
 export const events: EventType[] = eventsMock

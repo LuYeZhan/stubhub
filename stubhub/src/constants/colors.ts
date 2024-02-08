@@ -23,12 +23,13 @@ export const TicketActionColors = {
   hover: '#FAFAFA'
 }
 
-export const EventTitleColors = {
-  black: 'rgba(0, 0, 0, 0.7)'
+export const TicketListColors = {
+  primary: 'lightgreen',
+  border: ActionLinkColors.white
 }
 
-export const TicketListItemColors = {
-  border: ActionLinkColors.white
+export const EventTitleColors = {
+  black: 'rgba(0, 0, 0, 0.7)'
 }
 
 export const EventCellColors = {
