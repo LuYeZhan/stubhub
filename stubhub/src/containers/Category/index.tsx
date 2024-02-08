@@ -3,11 +3,12 @@ import { getDataDetails } from "../../api/endpoints/dataService";
 import { DETAILS_URLS, ID_URLS } from "../../constants/apiUrls";
 import { EventType } from "../../types/events.types";
 import Button from "../../components/Button";
-import { EventContainer, EventImageWrapper, EventItem, EventTitleWrapper, EventWrapper } from "./wrappers";
+import { ButtonWrapper, CategoryWrapper, EventContainer, EventImageWrapper, EventItem, EventTitleWrapper, EventWrapper } from "./wrappers";
 import { formatDate } from "../../helpers/dateFormat";
 import SearchInput from "../../components/SearchInput";
 import { useParams, useNavigate } from "react-router-dom";
 import { DataContext } from "../../context/DataContext";
+import { ButtonColors } from "../../constants/colors";
 
 const Category = () => {
 
@@ -43,7 +44,7 @@ const Category = () => {
   }
 
   return (
-    <>
+    <CategoryWrapper>
       <SearchInput categories={categories} />
       <EventContainer>
         {events.map((item: EventType) => (
@@ -57,11 +58,13 @@ const Category = () => {
               <p>{item.city}</p>
               <p>{formatDate(item.date)}</p>
             </EventItem>
-            <Button label="buy" color="white" bgColor="green" onClick={() => onClick(item.id, item.title)}/>
+            <ButtonWrapper>
+              <Button label="Buy" color={ButtonColors.white} bgColor={ButtonColors.green} onClick={() => onClick(item.id, item.title)}/>
+            </ButtonWrapper>
           </EventWrapper>
         ))}
       </EventContainer>
-    </>
+    </CategoryWrapper>
   );
 };
 

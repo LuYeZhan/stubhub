@@ -35,4 +35,5 @@ export const ButtonsWrapper = styled.div`
 `
 export const LogoWrapper = styled.img`
   margin:0.3em 0 0.3em 0.3em;
+  cursor: pointer;
 `

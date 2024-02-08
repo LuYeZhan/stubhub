@@ -9,6 +9,7 @@ import {
   LineWrapper,
   LogoWrapper
 } from "./wrappers";
+import { ButtonColors } from "../../constants/colors";
 
 const Header = () => {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(DataContext);
@@ -23,6 +24,10 @@ const Header = () => {
     }
   };
 
+  const onClick = () => {
+    navigate('/');
+  }
+
   const renderLoginButtonLabel = () => {
     return isUserLoggedIn ? 'Logout' : 'Login';
   };
@@ -31,13 +36,13 @@ const Header = () => {
     <HeaderWrapper>
       <LineWrapper src='/assets/img/line_color.png' alt="Line color"/>
       <NavWrapper>
-        <LogoWrapper src="/assets/logo/logo.svg" alt="Logo" /> 
+        <LogoWrapper src="/assets/logo/logo.svg" alt="Logo" onClick={onClick}/> 
         <ButtonsWrapper>
-          <Button label='Help' hover={true} color='#000000'/>
+          <Button label='Help' hover={true} color={ButtonColors.black}/>
           <Button
             label={renderLoginButtonLabel()}
             hover={true}
-            color='#000000'
+            color={ButtonColors.black}            
             onClick={handleLoginClick}
           />
         </ButtonsWrapper>
