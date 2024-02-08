@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { getDataById } from "../../api/endpoints/dataService";
-import { Container, DateTime, EventImage, EventInfo, EventTitle, Locations, TicketActions, TicketEvent, TicketListItem, TicketsList, Wrapper } from "./wrappers";
+import { Container, DateTime, EventImage, EventInfo, EventTitle, Locations, ParagraphWrapper, TicketActions, TicketEvent, TicketListItem, TicketsList, Wrapper } from "./wrappers";
 import { ID_TYPES, URLS } from "../../constants/apiUrls";
 import { Ticket } from "../../types/tickets.types";
 import { EventType, TempEventType } from "../../types/events.types";
@@ -42,12 +42,16 @@ const Account = () => {
 
   const handleDuplicateTicket = (eventId: number) => {
     const duplicatedEvents = [...userEvents];
-    const eventToDuplicate = duplicatedEvents.find(event => event.id === eventId);
-    if (eventToDuplicate) {
+    const eventToDuplicateIndex = duplicatedEvents.findIndex(event => event.id === eventId);
+    if (eventToDuplicateIndex !== -1) {
+      const eventToDuplicate = duplicatedEvents[eventToDuplicateIndex];
       const duplicatedEvent = { ...eventToDuplicate, id: Math.floor(Math.random() * 1000000), title: `Duplicated ${eventToDuplicate.title}` };
-      setUserEvents([...userEvents, duplicatedEvent]);
+      // Insert the duplicated event below the original event
+      duplicatedEvents.splice(eventToDuplicateIndex + 1, 0, duplicatedEvent);
+      setUserEvents(duplicatedEvents);
     }
   };
+  
 
   const handleRemoveTicket = (eventId: number) => {
     const filteredEvents = userEvents.filter(event => event.id !== eventId);
@@ -84,8 +88,10 @@ const Account = () => {
                   <EventImage src={event.imageUrl} />
                   <EventInfo>
                     <EventTitle>{event.title}</EventTitle>
-                    <DateTime>{formatDate(event.date)}</DateTime>
-                    <Locations>{`${event.city}, ${event.country}`}</Locations>
+                    <ParagraphWrapper>
+                      <DateTime>{formatDate(event.date)}</DateTime>
+                      <Locations>{`${event.city}, ${event.country}`}</Locations>
+                    </ParagraphWrapper>
                   </EventInfo>
                 </TicketEvent>
                 <TicketActions>

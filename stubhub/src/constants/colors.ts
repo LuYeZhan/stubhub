@@ -8,7 +8,8 @@ export const ButtonColors = {
 
 export const InputColors = {
   border: '#ccc',
-  background: '#f1f1f1'
+  background: '#f1f1f1',
+  shadow: 'rgba(0, 0, 0, 0.25)'
 }
 
 export const ActionLinkColors = {

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TicketListColors } from '../../constants/colors';
+import { Desktop } from '../../constants/devices';
 
 export const Wrapper = styled.div`
   padding: 1em 3em;
@@ -24,24 +25,37 @@ interface TicketListItemProps {
 export const TicketListItem = styled.li<TicketListItemProps>`
   border: 1px solid ${TicketListColors.border};
   display: block;
-  padding: 5px;
-  margin: 0 0 10px 0;
+  margin: 0 0 1em 0;
+  border-radius: 5px;
+  @media ${Desktop} {
+    padding: 0.75em;
+  }
   ${({ status }) => status && `
-    background-color: ${TicketListColors.primary}
-  `}
+  background-color: ${TicketListColors.primary}
+`}
 `;
 
 export const TicketEvent = styled.div`
-  display: table;
+  display: flex;
   width: 100%;
-  padding: 5px;
+  flex-direction: column;
+  @media ${Desktop} {
+    flex-direction: row;
+  }
 `;
 
 export const EventImage = styled.img`
   display: table-cell;
-  width: 150px;
-  height: 100px;
+  width: auto;
+  height: 175px;
   margin: 0;
+  border-radius: 5px;
+  @media ${Desktop} {
+    width: 200px;
+    height: 100px;
+    flex-direction: row;
+    margin: 5px 0 15px 5px;
+  }
 `;
 
 export const EventInfo = styled.div`
@@ -52,6 +66,11 @@ export const EventInfo = styled.div`
   font-size: 90%;
   line-height: 2.3em;
   color: gray;
+  @media ${Desktop} {
+    flex-direction: row;
+    margin-top: 1em;
+    font-size: 100%;
+  }
 `;
 
 export const EventTitle = styled.h4`
@@ -63,21 +82,41 @@ export const EventTitle = styled.h4`
   color: black;
 `;
 
+export const ParagraphWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media ${Desktop} {
+    flex-direction: row;
+  }
+`
+
 export const DateTime = styled.time`
-  &:after {
-    content: '-';
-    margin: 0 5px;
+  @media ${Desktop} {
+    flex-direction: row;
+    padding-right: 0.5em;
   }
 `;
 
 export const Locations = styled.span`
-  display: block;
+  @media ${Desktop} {
+    &:before {
+      content: ' - '
+    }
+  }
 `;
 
 export const TicketActions = styled.ul`
-  display: table;
-  width: 100%;
+  display: flex;
   text-align: center;
   padding: 0;
   margin: 0;
+  flex-direction: column;
+  @media ${Desktop} {
+    display: table;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
 `;

@@ -3,8 +3,8 @@ import { InputColors } from '../../constants/colors';
 
 export const SearchWrapper = styled.div`
   display: flex;
-  transition: all 0.2s ease-out;
   height: 3em;
+  box-shadow: 1px 2px 5px ${InputColors.shadow};
   & button {
     font-size: 1.5em;
   }
