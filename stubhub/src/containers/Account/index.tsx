@@ -8,6 +8,7 @@ import { formatDate } from "../../helpers/dateFormat";
 import TicketActionItem from "../../components/TicketActionItem";
 import SearchInput from "../../components/SearchInput";
 import { DataContext } from "../../context/DataContext";
+import Loading from "../../components/Loading";
 
 const Account = () => {
   const [userEvents, setUserEvents] = useState<TempEventType[]>([]);
@@ -79,7 +80,7 @@ const Account = () => {
       <Container>
         <h2>Tickets</h2>
         {loading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : (
           <TicketsList>
             {userEvents.map((event) => (

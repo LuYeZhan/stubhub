@@ -4,15 +4,18 @@ import { getDataById } from "../../api/endpoints/dataService";
 import { ID_TYPES, URLS } from "../../constants/apiUrls";
 import { CustomTr, EventContainer, TableWrapper, TicketList } from "./wrappers";
 import TicketItem from "../../components/TicketItem";
-import { Ticket } from "../../types/tickets.types";
 import Button from "../../components/Button";
 import { ButtonColors, LetterColors } from "../../constants/colors";
+import { Ticket } from "../../types/tickets.types";
+import Loading from "../../components/Loading";
 
 const Event = () => {
   const { eventId, eventName } = useParams<{ eventId: string; eventName: string }>();
   const navigate = useNavigate(); 
 
   const [eventData, setEventData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchEventData = async () => {
       if (!eventId) {
@@ -21,10 +24,13 @@ const Event = () => {
       }
 
       try {
+        setLoading(true); 
         const response = await getDataById(URLS.TICKETS, ID_TYPES.EVENT_ID, parseInt(eventId), true);
         setEventData(response);
       } catch (error) {
         console.error("Error fetching event data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -32,14 +38,16 @@ const Event = () => {
   }, [eventId]);
 
   const handleGoBack = () => {
-    navigate(-1); // Navigate back to the previous page
+    navigate(-1); 
   };
 
   const formattedEventName = eventName ? eventName.replace(/-/g, " ") : "Default Event Name";
   return (
     <EventContainer>
       <h2>{formattedEventName}</h2>
-      { eventData.length === 0 ? (
+      {loading ? (
+        <Loading />
+      ) : eventData.length === 0 ? (
         <p>No tickets left for this event.</p>
       ) : (
         <TicketList>
