@@ -10,11 +10,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DataContext } from "../../context/DataContext";
 import { ButtonColors } from "../../constants/colors";
 import Loading from "../../components/Loading";
+import useLoading from "../../hooks/useLoading";
 
 const Category = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const [events, setEvents] = useState<EventType[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { loading, setLoading } = useLoading();
   const { categories } = useContext(DataContext);
   const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ const Category = () => {
     };
 
     fetchCategoryDetails();
-  }, [categoryId]);
+  }, [categoryId, setLoading]);
 
   const onClick = (id: number, eventName: string) => {
     const encodedEventName = encodeURIComponent(eventName.replace(/\s+/g, "-"));

@@ -7,25 +7,33 @@ import Button from "../Button";
 import { FilteredWrapper, InputWrapper, SearchWrapper, TypeAheadWrapper } from "./wrappers";
 import { SearchInputProps } from "../../types/search.types";
 import Loading from "../Loading";
+import useLoading from "../../hooks/useLoading";
 
 const SearchInput: React.FC<SearchInputProps> = ({ categories }) => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredCategories, setFilteredCategories] = useState<CategoryType[]>([]);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useLoading();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const filtered = categories.filter((category: CategoryType) =>
-      category.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
-    setFilteredCategories(filtered);
-    setError(filtered.length === 0 && searchInput.trim() !== "");
-  }, [categories, searchInput]);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const filtered = categories.filter((category: CategoryType) =>
+          category.name.toLowerCase().includes(searchInput.toLowerCase())
+        );
+        setFilteredCategories(filtered);
+        setError(filtered.length === 0 && searchInput.trim() !== "");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  useEffect(() => {
-    setLoading(categories.length === 0);
-  }, [categories]);
+    fetchData();
+  }, [categories, searchInput, setLoading]);
 
   const handleCategoryClick = (id: number) => {
     navigate(`/category/${id}`);

@@ -8,13 +8,13 @@ import Button from "../../components/Button";
 import { ButtonColors, LetterColors } from "../../constants/colors";
 import { Ticket } from "../../types/tickets.types";
 import Loading from "../../components/Loading";
+import useLoading from "../../hooks/useLoading";
 
 const Event = () => {
   const { eventId, eventName } = useParams<{ eventId: string; eventName: string }>();
   const navigate = useNavigate(); 
-
   const [eventData, setEventData] = useState<any[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { loading, setLoading } = useLoading();
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -35,7 +35,7 @@ const Event = () => {
     };
 
     fetchEventData();
-  }, [eventId]);
+  }, [eventId, setLoading]);
 
   const handleGoBack = () => {
     navigate(-1); 
