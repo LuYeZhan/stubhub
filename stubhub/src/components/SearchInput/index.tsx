@@ -8,6 +8,9 @@ import { FilteredWrapper, InputWrapper, SearchWrapper, TypeAheadWrapper } from "
 import { SearchInputProps } from "../../types/search.types";
 import Loading from "../Loading";
 import useLoading from "../../hooks/useLoading";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 const SearchInput: React.FC<SearchInputProps> = ({ categories }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -47,7 +50,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ categories }) => {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-        <Button bgColor={ButtonColors.blue} label="Search" />
+        <Button icon={<FontAwesomeIcon icon={faSearch} />} bgColor={ButtonColors.blue} label="Search" />
       </SearchWrapper>
       {loading && <Loading />}
       {!loading && (

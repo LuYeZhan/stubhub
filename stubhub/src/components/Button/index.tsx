@@ -1,8 +1,12 @@
-import { CustomButtonProps, ButtonWrapper } from "./wrappers";
+import { ButtonWrapper, CustomButtonProps, IconWrapper } from "./wrappers";
 
-const Button: React.FC<CustomButtonProps> = ({ onClick, label, ...props }) => {
-  return <ButtonWrapper onClick={onClick} {...props}>{label}</ButtonWrapper>;
+const Button: React.FC<CustomButtonProps> = ({ onClick, label, icon, ...props }) => {
+  return (
+    <ButtonWrapper onClick={onClick} {...props}>
+      {icon && <IconWrapper>{icon}</IconWrapper>}
+      {label}
+    </ButtonWrapper>
+  );
 };
 
 export default Button;
-

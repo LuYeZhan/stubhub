@@ -5,6 +5,7 @@ import { ButtonColors } from '../../constants/colors';
 export interface CustomButtonProps extends ButtonProps {
   label: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  icon?: React.ReactNode;
 }
 
 interface ButtonProps {
@@ -27,7 +28,6 @@ export const ButtonWrapper = styled.button<ButtonProps>`
   transition: background-color 0.2s ease-out;
   border-radius: 3px;
 
-  /* Apply hover effect only if hover prop is true */
   ${props =>
     props.hover &&
     css`
@@ -35,4 +35,8 @@ export const ButtonWrapper = styled.button<ButtonProps>`
         background-color: ${ButtonColors.grey};
       }
     `}
+`;
+
+export const IconWrapper = styled.span`
+  margin-right: 5px;
 `;
