@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { TicketListColors } from '../../constants/colors';
-import { Desktop } from '../../constants/devices';
+import { Desktop, TabletLandscape } from '../../constants/devices';
 import { Paddings } from '../../constants/paddings';
 
 export const Wrapper = styled.div`
   padding: 1em;
   @media ${Desktop}{
-    padding: ${Paddings.desktop}
+    padding: ${Paddings.desktop};
   }
 `;
 
@@ -20,6 +20,9 @@ export const TicketsList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 interface TicketListItemProps {
@@ -29,10 +32,14 @@ interface TicketListItemProps {
 export const TicketListItem = styled.li<TicketListItemProps>`
   border: 1px solid ${TicketListColors.border};
   display: block;
-  margin: 0 0 1em 0;
+  margin-bottom: 1em;
   border-radius: 5px;
+  width: calc(100% - 0.5em); 
+  @media ${TabletLandscape} {
+    width: calc(50% - 0.5em); 
+  }
   @media ${Desktop} {
-    padding: 0.75em;
+    width: calc(50% - 0.5em);
   }
   ${({ status }) => status && `
   background-color: ${TicketListColors.primary}

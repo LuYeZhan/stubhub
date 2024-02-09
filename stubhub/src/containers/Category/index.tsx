@@ -11,6 +11,8 @@ import { DataContext } from "../../context/DataContext";
 import { ButtonColors } from "../../constants/colors";
 import Loading from "../../components/Loading";
 import useLoading from "../../hooks/useLoading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Category = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -61,9 +63,9 @@ const Category = () => {
                 <EventTitleWrapper>{item.title}</EventTitleWrapper>
               </EventImageWrapper>
               <EventItem>
-                <p>{item.venueName}</p>
-                <p>{item.city}</p>
-                <p>{formatDate(item.date)}</p>
+                <p><FontAwesomeIcon icon={faMapMarkerAlt} /> {item.venueName}</p>
+                <p><FontAwesomeIcon icon={faCalendarAlt} /> {formatDate(item.date)}</p>
+                <p><FontAwesomeIcon icon={faMapMarkerAlt} /> {item.city}</p>
               </EventItem>
               <ButtonWrapper>
                 <Button

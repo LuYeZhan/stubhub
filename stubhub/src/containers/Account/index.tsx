@@ -10,6 +10,8 @@ import SearchInput from "../../components/SearchInput";
 import { DataContext } from "../../context/DataContext";
 import Loading from "../../components/Loading";
 import useLoading from "../../hooks/useLoading";
+import { faTrash, faFile, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Account = () => {
   const [userEvents, setUserEvents] = useState<TempEventType[]>([]);
@@ -91,10 +93,10 @@ const Account = () => {
                   </EventInfo>
                 </TicketEvent>
                 <TicketActions>
-                  <TicketActionItem onClick={() => handleDuplicateTicket(event.id)} iconClass="fa-files-o" actionText="Duplicate" />
-                  <TicketActionItem onClick={() => handleRemoveTicket(event.id)} iconClass="fa-trash" actionText="Remove" />
-                  <TicketActionItem onClick={() => handleToggleTicketStatus(event.id, true)} iconClass="fa-eye" actionText="Activate" />
-                  <TicketActionItem onClick={() => handleToggleTicketStatus(event.id, false)} iconClass="fa-eye-slash" actionText="Deactivate" />
+                  <TicketActionItem onClick={() => handleDuplicateTicket(event.id)} icon={<FontAwesomeIcon icon={faFile} />}  actionText="Duplicate" />
+                  <TicketActionItem onClick={() => handleRemoveTicket(event.id)} icon={<FontAwesomeIcon icon={faTrash} />}   actionText="Remove" />
+                  <TicketActionItem onClick={() => handleToggleTicketStatus(event.id, true)} icon={<FontAwesomeIcon icon={faEye} />}  actionText="Activate" />
+                  <TicketActionItem onClick={() => handleToggleTicketStatus(event.id, false)} icon={<FontAwesomeIcon icon={faEyeSlash} />}   actionText="Deactivate" />
                 </TicketActions>
               </TicketListItem>
             ))}

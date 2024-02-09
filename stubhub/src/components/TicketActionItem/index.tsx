@@ -1,16 +1,16 @@
-import { ActionItem, ActionLink } from "./wrappers";
+import { ActionItem, ActionLink, Icon } from "./wrappers";
 
 interface TicketActionItemProps {
-  iconClass: string;
+  icon: JSX.Element;
   actionText: string;
   onClick?: () => void;
 }
 
-const TicketActionItem: React.FC<TicketActionItemProps> = ({ iconClass, actionText, onClick }) => {
+const TicketActionItem: React.FC<TicketActionItemProps> = ({ icon, actionText, onClick }) => {
   return (
-    <ActionItem >
-      <ActionLink onClick={onClick} >
-        <i className={`fa ${iconClass}`}></i>
+    <ActionItem>
+      <ActionLink onClick={onClick}>
+      <Icon>{icon}</Icon>
         <span>{actionText}</span>
       </ActionLink>
     </ActionItem>

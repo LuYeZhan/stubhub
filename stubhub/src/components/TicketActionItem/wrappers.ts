@@ -22,3 +22,7 @@ export const ActionLink = styled.a`
     padding: 1em 0;
   }
 `;
+
+export const Icon = styled.i`
+  margin-right: 5px;
+`;
